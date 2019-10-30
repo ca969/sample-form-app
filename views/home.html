@@ -1,0 +1,214 @@
+<div class="content">
+  <div class="search-add-header d-flex justify-content-center">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Ara"
+      aria-label="Ara"
+      aria-describedby="basic-addon1"
+      ng-model="search.name"
+    />
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Yeni Form Oluştur
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Form Bilgileri</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="modalForm" ng-submit="addForm()" novalidate>
+              <div class="form-group">
+                <label for="title">Formun Başlığı</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="title"
+                  id="title"
+                  aria-describedby="title"
+                  placeholder="Başlık"
+                  ng-model="modal.title"
+                  ng-required="true"
+                />
+                <div
+                  ng-show="modalForm.title.$touched && modalForm.title.$invalid"
+                >
+                  <small style="color: red; display: block;"
+                    >Lütfen bir başlık giriniz</small
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="date">Formun Açıklaması</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="desc"
+                  name="desc"
+                  aria-describedby="desc"
+                  placeholder="Açıklama"
+                  ng-model="modal.desc"
+                  ng-required="true"
+                />
+              </div>
+              <div ng-show="modalForm.desc.$touched && modalForm.desc.$invalid">
+                <small style="color: red; display: block;"
+                  >Lütfen bir açıklama giriniz</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="date">Tarih</label>
+                <input
+                  type="date"
+                  ng-model="date"
+                  class="form-control"
+                  id="date"
+                  aria-describedby="date"
+                  name="date"
+                  ng-model="modal.date"
+                  ng-required="true"
+                />
+
+                <p class="date-text">{{ date | date: "yyyy-MM-dd" }}</p>
+              </div>
+
+              <div class="form-group">
+                <label for="name">İsim</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  aria-describedby="name"
+                  placeholder="Adınız"
+                  ng-model="modal.name"
+                  ng-required="true"
+                  pattern="^[a-zA-ZğüşöçİĞÜŞÖÇ\s]+$"
+                  ng-pattern-restrict
+                />
+                <div
+                  ng-show="modalForm.name.$touched && modalForm.name.$invalid"
+                >
+                  <small style="color: red; display: block;"
+                    >Lütfen adınızı giriniz</small
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="surname">Soyisim</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="surname"
+                  name="surname"
+                  placeholder="Soyadınız"
+                  ng-model="modal.surname"
+                  ng-required="true"
+                  pattern="^[a-zA-ZğüşöçİĞÜŞÖÇ\s]+$"
+                  ng-pattern-restrict
+                />
+
+                <div
+                  ng-show="modalForm.surname.$touched && modalForm.surname.$invalid"
+                >
+                  <small style="color: red; display: block;"
+                    >Lütfen soyadınızı giriniz</small
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="age">Yaş</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="age"
+                  name="age"
+                  placeholder="Yaşınız"
+                  ng-model="modal.age"
+                  min="1"
+                  step="1"
+                  oninput="validity.valid||(value='')"
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="save-button"
+                class="btn btn-primary"
+                ng-disabled="modalForm.$invalid"
+              >
+                Kaydet
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                ng-click="clearFields()"
+              >
+                Çıkış
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="card-container container">
+    <div class="card-deck mx-auto ">
+      <div
+        class="card col-sm-4"
+        ng-repeat="form in forms | orderBy: order | filter: search:strict"
+      >
+        <div
+          class="card-body "
+          ng-model="selectedItem"
+          ng-click="go(form.name, forms); handleIndex(form)"
+        >
+          <h4 class="card-title">{{ form.name }}</h4>
+          <h6 class="card-desc">{{ form.description }}</h6>
+          <p class="card-text">
+            <span class="name-title">İsim: </span
+            ><span class="name">{{ form.fields[0].name }}</span>
+          </p>
+          <p class="card-text">
+            <span class="surname-title">Soyisim: </span
+            ><span class="surname">{{ form.fields[1].name }}</span>
+          </p>
+          <p class="card-text">
+            <span class="age-title">Yaş: </span
+            ><span class="age">{{ form.fields[2].name }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

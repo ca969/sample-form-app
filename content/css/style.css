@@ -1,0 +1,112 @@
+header {
+  width: 10%;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  margin-top: 2vh;
+}
+
+header > a {
+  font-size: 25px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+.search-add-header {
+  margin: 0 auto;
+  margin-top: 5vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 60%;
+}
+
+.search-add-header > input[type="text"] {
+  height: 56px;
+  margin: 10px;
+}
+
+.search-add-header > button {
+  height: 56px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.card-deck {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 35px;
+}
+
+.card {
+  width: 33%;
+  flex: auto !important;
+  margin: 10px;
+  border: 2px solid black !important;
+}
+
+.card:hover {
+  border: 2px solid red !important;
+}
+
+.name-title {
+  font-weight: bold;
+}
+
+.surname-title {
+  font-weight: bold;
+}
+
+.age-title {
+  font-weight: bold;
+}
+
+.card-body:hover {
+  cursor: pointer;
+}
+
+.index-content {
+  height: 300px;
+  margin-top: 6%;
+}
+.index-card {
+  height: 100%;
+}
+
+.index-card > .card-body {
+  display: grid;
+}
+
+.index-card > .card-body > h4 {
+  text-align: center;
+}
+.index-card > .card-body > h6 {
+  text-align: center;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-column > .card-text {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 5px;
+}
+
+

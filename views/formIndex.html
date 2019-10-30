@@ -1,0 +1,41 @@
+<div class="index-content">
+  <div class="card mx-auto index-card">
+    <div class="card-body">
+      <h4 class="card-title">{{ indexForm.name }}</h4>
+      <h6 class="card-desc">{{ indexForm.description }}</h6>
+      <div class="form-column">
+        <div class="card-text">
+          <span class="name-title">İsim: </span
+          ><input
+            type="text"
+            class="name"
+            id="name"
+            value="{{ indexForm.fields[0].name }}"
+          />
+        </div>
+        <div class="card-text">
+          <span class="surname-title">Soyisim: </span
+          ><input
+            type="text"
+            class="surname"
+            id="surname"
+            value="{{ indexForm.fields[1].name }}"
+          />
+        </div>
+
+        <div class="card-text">
+          <span class="age-title">Age: </span
+          ><input
+            type="number"
+            class="age"
+            id="age"
+            value="{{ indexForm.fields[2].name }}"
+            min="1"
+            step="1"
+            onkeypress="return event.charCode >= 48"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
